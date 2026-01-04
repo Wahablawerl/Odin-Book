@@ -59,3 +59,11 @@ exports.login = async (req, res) => {
     res.status(500).json({ error: "Server error during login" });
   }
 };
+
+exports.getMe = async (req, res) => {
+  try {
+    res.status(200).json(req.user); // req.user comes from protectRoute middleware
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};

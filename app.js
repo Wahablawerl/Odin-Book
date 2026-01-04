@@ -3,6 +3,9 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
+const postRoutes = require("./routes/postRoutes");
+const messageRoutes = require("./routes/messageRoutes");
+const { server } = require("./socket/socket");
 
 // Load environment variables
 dotenv.config();
@@ -16,6 +19,8 @@ app.use(express.json());
 // Routes
 app.get("/", (req, res) => res.send("odinBook API Running..."));
 app.use("/api/auth", authRoutes);
+app.use("/api/posts", postRoutes);
+app.use("/api/messages", messageRoutes);
 
 const PORT = process.env.PORT || 5000;
 
